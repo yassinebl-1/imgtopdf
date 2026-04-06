@@ -235,6 +235,49 @@ export default function ImageToPdfConverter() {
               Support for JPG and PNG. You can upload multiple files at once.
             </p>
           </div>
+          {/* Image Grid */}
+          {images.length > 0 && (
+            <div className="mt-4 flex flex-col gap-4">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-700">
+                <h3 className="font-semibold text-lg flex items-center gap-2">
+                  <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 py-0.5 px-2.5 rounded-full text-sm font-bold">
+                    {images.length}
+                  </span>
+                  Images added
+                </h3>
+                <button
+                  onClick={clearAll}
+                  className="text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 dark:hover:text-red-400 transition-colors font-medium"
+                >
+                  Clear All
+                </button>
+              </div>
+
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  <SortableContext
+                    items={images.map(img => img.id)}
+                    strategy={rectSortingStrategy}
+                  >
+                    {images.map((image) => (
+                      <SortableImageItem
+                        key={image.id}
+                        id={image.id}
+                        image={image}
+                        onRemove={removeImage}
+                      />
+                    ))}
+                  </SortableContext>
+                </div>
+              </DndContext>
+            </div>
+          )}
+
+
 
 
         </main>
