@@ -276,6 +276,24 @@ export default function ImageToPdfConverter() {
               </DndContext>
             </div>
           )}
+          {/* Actions */}
+          <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700 flex justify-end">
+            <button
+              onClick={generatePDF}
+              disabled={images.length === 0 || isGenerating}
+              className={`
+                flex items-center gap-2 px-6 py-3 rounded-lg font-semibold shadow-lg transition-all duration-200 transform
+                ${images.length === 0
+                  ? 'bg-slate-200 text-slate-400 dark:bg-slate-700 dark:text-slate-500 cursor-not-allowed shadow-none'
+                  : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0'
+                }
+                ${isGenerating ? 'animate-pulse' : ''}
+              `}
+            >
+              <FileDown size={20} />
+              {isGenerating ? 'Generating PDF...' : 'Download PDF'}
+            </button>
+          </div>
 
 
 
