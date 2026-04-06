@@ -295,9 +295,6 @@ export default function ImageToPdfConverter() {
             </button>
           </div>
 
-
-
-
         </main>
       </div>
     </div>
